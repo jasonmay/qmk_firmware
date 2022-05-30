@@ -9,7 +9,7 @@
 #define XX_ESC LCTL_T(KC_ESC)
 
 // 1=], 2=lower
-#define XX_LJM LT(_LOWER, KC_Z)
+#define XX_LJM LT(_LOWER, JMSEQ)
 
 // 1=[, 2=lower
 // #define XX_RTAB LT(_RAISE, KC_TAB)
@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSPO,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LBRC,          KC_RBRC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,KC_RSPC,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    XX_CCBR, KC_ENT,  XX_LJM,                    KC_BSPC,  KC_SPC, XX_ACBR
+                                    XX_CCBR, XX_LJM,  KC_ENT,                    KC_BSPC,  KC_SPC, XX_ACBR
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -129,11 +129,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       return false;
       break;
-    case JMSEQ:
-      if (record->event.pressed) {
+    case XX_LJM:
+      if (record->tap.count && record->event.pressed) {
         SEND_STRING("\\ks");
+        return false;
       }
-      return false;
       break;
   }
   return true;
