@@ -24,6 +24,10 @@
 // browser forward
 #define XX_BFD LGUI(KC_RIGHT)
 
+// navigate workspaces
+#define XX_LWKS LALT(KC_LBRC)
+#define XX_RWKS LALT(KC_RBRC)
+
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   LOWER,
@@ -50,9 +54,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                            KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     RESET,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR,    _______,
+     RESET,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_DEL,  _______, _______, _______, _______, _______,                            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,_______, KC_PIPE,
+     KC_DEL,  XX_LWKS, _______, _______, _______, _______,                            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,XX_RWKS, KC_PIPE,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      BL_STEP, _______, _______, _______, _______, XX_BBK,  KC_F3,            XX_XPOS,  XX_BFD, KC_LCBR, KC_RCBR, _______, _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴─── ─────┘
