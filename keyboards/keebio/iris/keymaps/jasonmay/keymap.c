@@ -8,20 +8,21 @@
 // 1=esc, 2=ctrl
 #define XX_ESC LCTL_T(KC_ESC)
 
-// 1=], 2=lower
+// 1=vimcmd, 2=lower
 #define XX_LJM LT(_LOWER, JMSEQ)
 
-// 1=[, 2=lower
-// #define XX_RTAB LT(_RAISE, KC_TAB)
-#define XX_RTAB LSFT_T(KC_TAB)
+// 1=tab, 2=raise
+#define XX_RTAB LT(_RAISE, KC_TAB)
 
+// mod-tap {} on cmd/alt respectively
 #define XX_CCBR LGUI_T(S(KC_LBRC))
 #define XX_ACBR RALT_T(S(KC_RBRC))
+
 // expose on my mac
 #define XX_XPOS LCTL(KC_UP)
-// browser back
+
+// browser back/forward
 #define XX_BBK LGUI(KC_LEFT)
-// browser forward
 #define XX_BFD LGUI(KC_RIGHT)
 
 // navigate workspaces
@@ -32,8 +33,9 @@ enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   LOWER,
   RAISE,
-  JMSEQ, // sequences for jason may
+  JMSEQ, // sequence for jason may (for env-determined vim dev stuff)
 };
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT(
@@ -56,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      RESET,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_LBRC, KC_RBRC, KC_LCBR, KC_RCBR, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_DEL,  XX_LWKS, _______, _______, _______, _______,                            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,XX_RWKS, KC_PIPE,
+     KC_DEL,  XX_LWKS, _______, _______, XX_XPOS, _______,                            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,XX_RWKS, KC_PIPE,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      BL_STEP, _______, _______, _______, _______, XX_BBK,  KC_F3,            XX_XPOS,  XX_BFD, KC_LCBR, KC_RCBR, _______, _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴─── ─────┘
@@ -82,6 +84,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   uint16_t lshift = (get_mods() & MOD_BIT(KC_LSFT));
   uint16_t rshift = (get_mods() & MOD_BIT(KC_RSFT));
+  // for second press of mod/layer tap combo
+  bool chorded = (record->tap.count && record->event.pressed);
 #ifdef CONSOLE_ENABLE
   uprintf("PRU: %u, pressed: %u, i:%u LS:%u, RS:%u\n", keycode, record->event.pressed, record->tap.interrupted, lshift, rshift);
 #endif
@@ -106,13 +110,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       }
       break;
     case XX_CCBR:
-      if (record->tap.count && record->event.pressed) {
+      if (chorded) {
         tap_code16(KC_LCBR);
         return false;
       }
       break;
     case XX_ACBR:
-      if (record->tap.count && record->event.pressed) {
+      if (chorded) {
         tap_code16(KC_RCBR);
         return false;
       }
@@ -134,7 +138,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
     case XX_LJM:
-      if (record->tap.count && record->event.pressed) {
+      if (chorded) {
         SEND_STRING("\\ks");
         return false;
       }
