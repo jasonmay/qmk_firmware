@@ -19,5 +19,4 @@
 #pragma once
 
 #define ORYX_CONFIGURATOR
-#define TAPPING_TERM 140
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
