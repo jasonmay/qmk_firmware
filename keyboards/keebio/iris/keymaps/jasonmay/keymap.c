@@ -15,8 +15,14 @@
 // #define XX_RTAB LT(_RAISE, KC_TAB)
 #define XX_RTAB LSFT_T(KC_TAB)
 
+#define XX_CCBR LGUI_T(S(KC_LBRC))
+#define XX_ACBR RALT_T(S(KC_RBRC))
 // expose on my mac
 #define XX_XPOS LCTL(KC_UP)
+// browser back
+#define XX_BBK LGUI(KC_LEFT)
+// browser forward
+#define XX_BFD LGUI(KC_RIGHT)
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
@@ -24,11 +30,6 @@ enum custom_keycodes {
   RAISE,
   JMSEQ, // sequences for jason may
 };
-
-enum td_keycodes {
-  LEFT_SHIFT_PAREN
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_QWERTY] = LAYOUT(
@@ -41,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSPO,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_LBRC,          KC_RBRC,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,KC_RSPC,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_LGUI, KC_ENT,  XX_LJM,                    KC_BSPC,  KC_SPC,  KC_RALT
+                                    XX_CCBR, KC_ENT,  XX_LJM,                    KC_BSPC,  KC_SPC, XX_ACBR
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -53,7 +54,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_DEL,  _______, _______, _______, _______, _______,                            KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,_______, KC_PIPE,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     BL_STEP, _______, _______, _______, _______, _______, KC_F3,            XX_XPOS, _______, KC_LCBR, KC_RCBR, _______, _______, _______,
+     BL_STEP, _______, _______, _______, _______, XX_BBK,  KC_F3,            XX_XPOS,  XX_BFD, KC_LCBR, KC_RCBR, _______, _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴─── ─────┘
                                     _______, _______, _______,                   KC_LCBR, KC_RCBR, KC_P0
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -82,23 +83,35 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #endif
 
   switch (keycode) {
-    // make rolling )( work again
-    case KC_LSPO:
-      if (record->event.pressed && rshift == MOD_BIT(KC_RSFT)) {
-        tap_code(KC_0);
-      }
-      break;
-    // make rolling () work again
-    case KC_RSPC:
-      if (record->event.pressed && lshift == MOD_BIT(KC_LSFT)) {
-        tap_code(KC_9);
-      }
-      break;
     case QWERTY:
       if (record->event.pressed) {
         set_single_persistent_default_layer(_QWERTY);
       }
       return false;
+      break;
+    // make rolling )( work
+    case KC_LSPO:
+      if (record->event.pressed && rshift == MOD_BIT(KC_RSFT)) {
+        tap_code(KC_0);
+      }
+      break;
+    // make rolling () work
+    case KC_RSPC:
+      if (record->event.pressed && lshift == MOD_BIT(KC_LSFT)) {
+        tap_code(KC_9);
+      }
+      break;
+    case XX_CCBR:
+      if (record->tap.count && record->event.pressed) {
+        tap_code16(KC_LCBR);
+        return false;
+      }
+      break;
+    case XX_ACBR:
+      if (record->tap.count && record->event.pressed) {
+        tap_code16(KC_RCBR);
+        return false;
+      }
       break;
     case LOWER:
       if (record->event.pressed) {
@@ -131,6 +144,9 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     case XX_LJM:
     case XX_ESC:
     case KC_LSFT:
+    case KC_RSFT:
+    case KC_LGUI:
+    case KC_RALT:
       return true;
     default:
         return false;
