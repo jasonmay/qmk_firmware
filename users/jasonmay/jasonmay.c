@@ -33,15 +33,16 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         tap_code(KC_9);
       }
       break;
-    case XX_CCBR:
+    // code16 is overkill but this used to be {} so it was once necessary
+    case XX_CBRC:
       if (chorded) {
-        tap_code16(KC_LCBR);
+        tap_code16(KC_LBRC);
         return false;
       }
       break;
-    case XX_ACBR:
+    case XX_ABRC:
       if (chorded) {
-        tap_code16(KC_RCBR);
+        tap_code16(KC_RBRC);
         return false;
       }
       break;
