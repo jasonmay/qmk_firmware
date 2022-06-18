@@ -37,7 +37,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TILD, KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC, _______,           _______, KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_BSPC,
     XX_LWIN, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    _______,           _______, KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    XX_RWIN,
     KC_DEL,  XX_LWKS, _______, _______, XX_XPOS, _______, _______,           _______, KC_LEFT, KC_DOWN, KC_UP,   KC_RIGHT,XX_RWKS, KC_PIPE,
-    _______, _______, _______, _______, _______, XX_BBK,                              XX_BFD,  _______, _______, _______, _______, _______,
+    KC_GRV,  _______, _______, _______, _______, XX_BBK,                               XX_BFD,  _______, _______, _______, _______, _______,
     _______, _______, _______, _______, XY_LTO,           XY_LTU,            XY_RTU,           XY_RTO,  _______, _______, _______, _______,
                                         XY_LTM,  XY_LTI,  XY_LTU,            XY_RTU,  XY_RTI,  XY_RTM
  ),

@@ -49,10 +49,17 @@
 #define XX_RTU XX_RWKS
 
 // same as above but on LOWER layer
-#define XY_LTO _______
-#define XY_LTM _______
-#define XY_LTI _______
-#define XY_LTU _______
+// #ifdef _______
+// #define XY_LTO _______
+// #define XY_LTM _______
+// #define XY_LTI _______
+// #define XY_LTU _______
+// #else
+#define XY_LTO KC_TRNS
+#define XY_LTM KC_TRNS
+#define XY_LTI KC_TRNS
+#define XY_LTU KC_TRNS
+// #endif
 
 #define XY_RTO XX_FWIN
 #define XY_RTM KC_RCBR
