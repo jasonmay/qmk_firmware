@@ -7,9 +7,11 @@
 #include "version.h"
 
 #define _QWERTY 0
-#define _LOWER 1
-#define _RAISE 2
-#define _JMSEQ 3
+#define _LEFTY  1
+#define _LOWER  2
+#define _RAISE  3
+#define _LEFTY2 4
+#define _JMSEQ  5
 
 // 1=esc, 2=ctrl
 #define XX_ESC LCTL_T(KC_ESC)
