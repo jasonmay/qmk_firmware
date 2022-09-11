@@ -12,10 +12,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   uint16_t ralt = (get_mods() & MOD_BIT(KC_RALT));
   // for second press of mod/layer tap combo
   bool chorded = (record->tap.count && record->event.pressed);
+  static bool lgui_pressed = false;
+  static bool lgui_interrupted = false;
+  bool reset_lgui_interrupted = false;
 #ifdef CONSOLE_ENABLE
   uprintf("PRU: %u, pressed: %u, i:%u M:%u%u%u%u\n", keycode, record->event.pressed, record->tap.interrupted, lshift, lgui, ralt, rshift);
 #endif
 
+  if (lgui_pressed && record->event.pressed) {
+    if (keycode != XX_ABRC) {
+      register_code(KC_LGUI);
+    }
+  }
+
+  if (!lgui_pressed && !record->event.pressed) {
+      unregister_code(KC_LGUI);
+  }
+  if (lgui_interrupted && keycode != XX_CBRC && !record->event.pressed) {
+    reset_lgui_interrupted = true;
+    lgui_interrupted = false;
+  }
   switch (keycode) {
     case QWERTY:
       if (record->event.pressed) {
@@ -37,15 +53,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       break;
     // code16 is overkill but this used to be {} so it was once necessary
     case XX_CBRC:
-      if (chorded) {
-        tap_code16(KC_LBRC);
+      lgui_pressed = record->event.pressed;
+      if (record->tap.interrupted) {
+        lgui_interrupted = true;
         return false;
       }
       break;
     case XX_ABRC:
-      if (chorded) {
-        tap_code16(KC_RBRC);
-        return false;
+      if (record->event.pressed) {
+        if(reset_lgui_interrupted || lgui_interrupted) {
+          tap_code(KC_LBRC);
+        }
+        //unregister_code16(XX_CBRC);
+        // return false;
       }
       break;
     case LOWER:

@@ -80,8 +80,8 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     case XX_ESC:
     case KC_LSFT:
     case KC_RSFT:
-    case XX_RTO:
-    case XX_LTO:
+    // case XX_RTO:
+    // case XX_LTO:
       return true;
     default:
         return false;
