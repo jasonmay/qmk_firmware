@@ -1,6 +1,8 @@
 #include QMK_KEYBOARD_H
 
 #include "jasonmay.h"
+#include "print.h"
+#include "config.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -79,10 +81,19 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     case XX_ESC:
     case KC_LSFT:
     case KC_RSFT:
-    case KC_LGUI:
     case KC_RALT:
       return true;
     default:
         return false;
     }
+}
+
+#define PERMISSIVE_HOLD_PER_KEY
+bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+  case XX_LTO:
+    return true;
+  default:
+    return false;
+  }
 }
