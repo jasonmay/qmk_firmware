@@ -80,15 +80,33 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     case XX_ESC:
     case KC_LSFT:
     case KC_RSFT:
-    case KC_RALT:
+    case XX_RTO:
+    case XX_LTO:
       return true;
     default:
         return false;
     }
 }
 
-#define PERMISSIVE_HOLD_PER_KEY
 bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+  case XX_LTO:
+    return true;
+  default:
+    return false;
+  }
+}
+
+bool get_retro_tapping(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+  case XX_LTO:
+    return true;
+  default:
+    return false;
+  }
+}
+
+bool get_ignore_mod_tap_interrupt(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
   case XX_LTO:
     return true;
