@@ -1,0 +1,8 @@
+{% for item in combos %}
+const uint16_t PROGMEM {{ item[0] }}_combo[] = {{ '{' }}{{ item[1] }},   KC_SPC, COMBO_END{{ '}' }};
+{% endfor %}
+combo_t key_combos[COMBO_COUNT]  = {{ '{' }}
+{% for item in combos %}
+  COMBO({{ item[0] }}_combo,      {{ item[2] }}),
+{% endfor %}
+{{ '}' }};

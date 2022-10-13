@@ -1,0 +1,16 @@
+
+// #define MASTER_LEFT
+// #define MASTER_RIGHT
+// #define EE_HANDS
+
+#define FORCE_NKRO
+#define ONESHOT_TIMEOUT 8000
+#define TAPPING_TERM 501
+#define PERMISSIVE_HOLD
+#define RETRO_TAPPING
+
+#include "jason_config.gen.h"
+#define COMBO_TERM 150
+#define COMBO_ENABLE 1
+#undef RGBLIGHT_EFFECT_STATIC_GRADIENT
+#undef RGBLIGHT_EFFECT_RAINBOW_SWIRL
