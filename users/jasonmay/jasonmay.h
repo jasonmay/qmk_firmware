@@ -6,6 +6,8 @@
 #include "action.h"
 #include "version.h"
 
+#undef RGBLIGHT_ENABLE
+
 #define _QWERTY 0
 #define _LEFTY  1
 #define _LOWER  2

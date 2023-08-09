@@ -41,13 +41,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       return false;
       break;
     // make rolling )( work
-    case KC_LSPO:
+    case SC_LSPO:
       if (record->event.pressed && rshift == MOD_BIT(KC_RSFT)) {
         tap_code(KC_0);
       }
       break;
     // make rolling () work
-    case KC_RSPC:
+    case SC_RSPC:
       if (record->event.pressed && lshift == MOD_BIT(KC_LSFT)) {
         tap_code(KC_9);
       }
@@ -95,3 +95,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   return true;
 }
 #endif
+

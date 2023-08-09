@@ -23,4 +23,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
 #define PERMISSIVE_HOLD_PER_KEY
 #define RETRO_TAPPING_PER_KEY
-#define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
+#define HOLD_ON_OTHER_KEY_PRESS_PER_KEY
+// #define IGNORE_MOD_TAP_INTERRUPT_PER_KEY
