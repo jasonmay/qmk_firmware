@@ -7,6 +7,7 @@
 #include "version.h"
 
 #undef RGBLIGHT_ENABLE
+#undef RGB_MATRIX_ENABLE
 
 #define _QWERTY 0
 #define _LEFTY  1
