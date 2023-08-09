@@ -41,7 +41,6 @@ const uint16_t PROGMEM test_combo7[] = {KC_D, KC_F, KC_J, COMBO_END};
 const uint16_t PROGMEM test_combo8[] = {KC_D, KC_F, KC_K, COMBO_END};
 const uint16_t PROGMEM test_combo9[] = {KC_D, KC_F, KC_L, COMBO_END};
 const uint16_t PROGMEM test_combo0[] = {KC_D, KC_F, KC_SCLN, COMBO_END};
-const uint16_t PROGMEM test_combo_a[] = {KC_D, KC_F, KC_QUOT, COMBO_END};
 
 const uint16_t PROGMEM test_combo_s1[] = {KC_J, KC_K, KC_L, KC_A, COMBO_END};
 const uint16_t PROGMEM test_combo_s2[] = {KC_J, KC_K, KC_L, KC_S, COMBO_END};
