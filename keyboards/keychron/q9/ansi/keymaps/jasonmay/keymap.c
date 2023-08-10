@@ -125,13 +125,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_FN1] = LAYOUT_ansi_52(
         KC_GRV,  KC_BRID,  KC_BRIU,  KC_NO,   KC_NO,   RGB_VAD, RGB_VAI, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,          _______,
-        KC_1, KC_2,  KC_3,  KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, _______,  _______,            _______,          _______,
+        _______, _______,  _______,  _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,  _______,            _______,          _______,
         _______,           RGB_RMOD, RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD, NK_TOGG, _______, _______, _______,  _______,            _______, _______,
         _______, _______,  _______,                             _______,                            _______,  _______,  _______,  _______, _______, _______),
 
     [_FN2] = LAYOUT_ansi_52(
         KC_GRV,  KC_BRID,  KC_BRIU,  KC_TASK, KC_FLXP, RGB_VAD, RGB_VAI, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,          _______,
-        KC_1, KC_2,  KC_3,  KC_4, KC_5, KC_6, KC_7, KC_8, KC_9, KC_0, _______,  _______,            _______,          _______,
+        _______, _______,  _______,  _______, _______, _______, KC_LEFT, KC_DOWN, KC_UP, KC_RIGHT, _______,  _______,            _______,          _______,
         _______,           RGB_RMOD, RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD, NK_TOGG, _______, _______, _______,  _______,            _______, _______,
         _______, _______,  _______,                             _______,                            _______,  _______,  _______,  _______, _______, _______),
 
