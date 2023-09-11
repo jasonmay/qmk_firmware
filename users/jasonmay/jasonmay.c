@@ -9,14 +9,14 @@ bool process_record_keymap(uint16_t keycode, keyrecord_t *record) {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   uint16_t lshift = (get_mods() & MOD_BIT(KC_LSFT));
   uint16_t rshift = (get_mods() & MOD_BIT(KC_RSFT));
-  uint16_t lgui = (get_mods() & MOD_BIT(KC_LGUI));
-  uint16_t ralt = (get_mods() & MOD_BIT(KC_RALT));
   // for second press of mod/layer tap combo
   bool chorded = (record->tap.count && record->event.pressed);
   static bool lgui_pressed = false;
   static bool lgui_interrupted = false;
   bool reset_lgui_interrupted = false;
 #ifdef CONSOLE_ENABLE
+  uint16_t lgui = (get_mods() & MOD_BIT(KC_LGUI));
+  uint16_t ralt = (get_mods() & MOD_BIT(KC_RALT));
   uprintf("PRU: %u, pressed: %u, i:%u M:%u%u%u%u\n", keycode, record->event.pressed, record->tap.interrupted, lshift, lgui, ralt, rshift);
 #endif
 

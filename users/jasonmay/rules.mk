@@ -1,2 +1,4 @@
-CONSOLE_ENABLE = yes
+# CONSOLE_ENABLE = yes
+RGBLIGHT_ENABLE = no
+RGB_MATRIX_ENABLE = no
 SRC += jasonmay.c

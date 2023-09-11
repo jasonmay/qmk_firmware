@@ -1,15 +1,10 @@
 #include QMK_KEYBOARD_H
+//
+// #include "config.h"
+// #include "quantum.h"
+// #include "action.h"
+// #include "version.h"
 
-#include "config.h"
-#include "quantum.h"
-#include "action.h"
-#include "version.h"
-
-
-#undef RGBLIGHT_ENABLE
-#undef RGB_MATRIX_ENABLE
-#undef MOUSEKEY_ENABLE
-#define NO_ACTION_ONESHOT
 
 #define _QWERTY 0
 #define _LEFTY  1
@@ -138,18 +133,16 @@ combo_t key_combos[] = {
     COMBO(test_combo8, KC_8),
     COMBO(test_combo9, KC_9),
     COMBO(test_combo0, KC_0),
-
-    COMBO(test_combo_s1, S(KC_1)),
-    COMBO(test_combo_s2, S(KC_2)),
-    COMBO(test_combo_s3, S(KC_3)),
-    COMBO(test_combo_s4, S(KC_4)),
-    COMBO(test_combo_s5, S(KC_5)),
-    COMBO(test_combo_s6, S(KC_6)),
-    COMBO(test_combo_s7, S(KC_7)),
-    COMBO(test_combo_s8, S(KC_8)),
+    COMBO(test_combo_s1, KC_EXLM),
+    COMBO(test_combo_s2, KC_AT),
+    COMBO(test_combo_s3, KC_HASH),
+    COMBO(test_combo_s4, KC_DLR),
+    COMBO(test_combo_s5, KC_PERC),
+    COMBO(test_combo_s6, KC_CIRC),
+    COMBO(test_combo_s7, KC_AMPR),
+    COMBO(test_combo_s8, KC_ASTR),
     COMBO(test_combo_s9, KC_GRV),
     COMBO(test_combo_s0, KC_TILD),
-
     COMBO(test_combo_g1, LGUI(KC_1)),
     COMBO(test_combo_g2, LGUI(KC_2)),
     COMBO(test_combo_g3, LGUI(KC_3)),
@@ -164,7 +157,7 @@ combo_t key_combos[] = {
     COMBO(test_combo_plus, KC_PLUS),
     COMBO(test_combo_mins, KC_MINS),
     COMBO(test_combo_eql, KC_EQL),
-    COMBO(test_combo_under, S(KC_MINS)),
+    COMBO(test_combo_under, KC_UNDS),
 };
 
 
