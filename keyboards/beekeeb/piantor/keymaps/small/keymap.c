@@ -124,8 +124,8 @@ const uint16_t PROGMEM combo_g8[] = {KC_A, KC_S, KC_D, KC_K, COMBO_END};
 const uint16_t PROGMEM combo_g9[] = {KC_A, KC_S, KC_D, KC_L, COMBO_END};
 const uint16_t PROGMEM combo_g0[] = {KC_A, KC_S, KC_D, KC_SCLN, COMBO_END};
 
-const uint16_t PROGMEM combo_left_space[] = {KC_Q, KC_W, KC_Y, COMBO_END};
-const uint16_t PROGMEM combo_right_space[] = {KC_R, KC_T, KC_Y, COMBO_END};
+const uint16_t PROGMEM combo_left_space[] = {KC_R, KC_T, KC_Y, COMBO_END};
+const uint16_t PROGMEM combo_right_space[] = {KC_R, KC_T, KC_P, COMBO_END};
 
 const uint16_t PROGMEM combo_seq[] = {KC_J, KC_K, KC_L, COMBO_END};
 const uint16_t PROGMEM combo_seq2[] = {KC_H, KC_J, KC_K, COMBO_END};
